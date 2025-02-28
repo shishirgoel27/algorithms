@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class Graph {
 
     String name;
-    Map<Integer, List<Integer>> adjacencyList;
+    Map<Integer, List<WeightedEdge>> adjacencyList;
 
     Graph(String name) {
         this.name = String.copyValueOf(name.toCharArray());
@@ -17,14 +17,28 @@ public class Graph {
     }
 
     void addEdge(int u, int v) {
-        adjacencyList.computeIfAbsent(u, k-> new ArrayList<>()).add(v);
+        addWeightedEdge(u, v , 0);
+    }
+
+    void addWeightedEdge(int u, int v, int weight) {
+        adjacencyList.computeIfAbsent(u,
+                k-> new ArrayList<WeightedEdge>()).add(new WeightedEdge(v, weight)
+        );
     }
 
     List<Integer> getNeighbors(int u) {
+        return getWeightedNeighbors(u)
+                .stream()
+                .map(WeightedEdge::end)
+                .toList();
+    }
+
+    List<WeightedEdge> getWeightedNeighbors(int u) {
         return adjacencyList.getOrDefault(u, new ArrayList<>());
     }
 
     void printGraph() {
+        System.out.println("Printing "+name+" graph");
         adjacencyList.forEach((k, v) -> {
             System.out.println("" + k + "-->" + v.stream().map(String::valueOf).collect(Collectors.joining(",")));
         });

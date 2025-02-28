@@ -7,7 +7,7 @@ import java.util.Set;
 public class BFS {
 
     public static void main(String[] args) {
-        Graph g = new Graph("DFS");
+        Graph g = new Graph("BFS");
         g.addEdge(1,2);
         g.addEdge(2,3);
         g.addEdge(2,4);
