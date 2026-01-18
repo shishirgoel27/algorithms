@@ -2,7 +2,6 @@ package com.algorithms.practice.graph;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ShortestPath {
 
@@ -21,13 +20,11 @@ public class ShortestPath {
         int source = 1;
         int destination = 8;
         var path = findShortestPath(g, source, destination);
-        switch (path.size()) {
-            case 0 -> System.out.println("No path found between " + source + " and " + destination);
-            default -> {
-                var pathStr = path.stream().map(String::valueOf).collect(Collectors.joining("-->"));
-                System.out.println(pathStr);
-            }
-
+        if (path.isEmpty()) {
+            System.out.println("No path found between " + source + " and " + destination);
+        } else {
+            var pathStr = path.stream().map(String::valueOf).collect(Collectors.joining("-->"));
+            System.out.println(pathStr);
         }
     }
 
@@ -58,7 +55,7 @@ public class ShortestPath {
                             pathMap.put(n, node);
                             queue.offer(n);
                             System.out.println("Node added to queue: "+n);
-                            System.out.println("Path elements so far: "+pathMap.toString());
+                            System.out.println("Path elements so far: "+pathMap);
                         }
                     });
         }
@@ -77,20 +74,20 @@ public class ShortestPath {
             parent = pathMap.get(parent);
         }
         if (!path.getLast().equals(source)) {
-            List.of();
+            return List.of();
         }
         return path.reversed()
                 .stream()
                 .map(Node::vertex)
-                .collect(Collectors.toCollection(ArrayList<Integer>::new));
+                .collect(Collectors.toList());
     }
 
-    private static record Node(int vertex, int cost) {
+    private record Node(int vertex, int cost) {
         @Override
         public boolean equals(Object obj) {
             return obj == this ||
                     (
-                            obj instanceof Node node && (node.vertex() == vertex() && node.cost() == cost())
+                            obj instanceof Node(int vertex1, int cost1) && (vertex1 == vertex() && cost1 == cost())
                     );
         }
     }
