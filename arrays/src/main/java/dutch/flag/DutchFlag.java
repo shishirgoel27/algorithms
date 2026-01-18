@@ -15,29 +15,46 @@ public class DutchFlag {
     public static void main(String[] args) {
 //        char[] input = {'R', 'B', 'G', 'R', 'G', 'G', 'B', 'G', 'B'}; // input type 1
         char[] input = {'R', 'G', 'R', 'G', 'G', 'B', 'G', 'B'};  // input type 2
-        System.out.println("INPUT: "+(Arrays.toString(input)));
-        System.out.println("OUTPUT: "+Arrays.toString(rearrange(input)));
+        System.out.println("INPUT: " + (Arrays.toString(input)));
+        System.out.println("OUTPUT: " + Arrays.toString(threePivotPartition(input)));
     }
 
     private static char[] rearrange(char[] input) {
-        int i = 0, l = input.length-1, k = 0;
-        while(i < l) {
-            while(input[i] == 'R') {
+        int i = 0, l = input.length - 1, k = 0;
+        while (i < l) {
+            while (input[i] == 'R') {
                 i++;
                 k++;
             }
-            while(input[l] == 'G' ) {
+            while (input[l] == 'G') {
                 l--;
             }
-            if(input[l] == 'B' && l > k) {
+            if (input[l] == 'B' && l > k) {
                 swap(input, ++k, l);
             }
-            if(input[l] == 'R') {
+            if (input[l] == 'R') {
                 swap(input, i, l);
                 i++;
             }
             if (k >= l) {
                 break;
+            }
+        }
+        return input;
+    }
+
+    private static char[] threePivotPartition(char[] input) {
+        int first = 0, mid = 0, last = input.length - 1;
+        while (mid <= last) {
+            if (input[mid] == 'R') {
+                swap(input, first, mid);
+                first++;
+                mid++;
+            } else if (input[mid] == 'B') {
+                mid++;
+            } else {
+                swap(input, mid, last);
+                last--;
             }
         }
         return input;
