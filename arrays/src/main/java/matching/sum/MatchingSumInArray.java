@@ -12,11 +12,15 @@ public class MatchingSumInArray {
 //        int  k = 25;
         int[] inputArray = {10, 3, 7, 10};
         int  k = 20;
-        System.out.printf("found=%b 2 numbers in the array summing to %d%n", find2Numbers(inputArray, k), k);
+        var numbers = find2NumbersImproved(inputArray, k);
+        if(numbers != null) {
+            for(int i: numbers) {
+                System.out.printf("index=%d, value=%d | ",i, inputArray[i]);
+            }
+        }
     }
 
     private static boolean find2Numbers(int[] inputArray, int k) {
-//        var arrayToSet = Arrays.stream(inputArray).boxed().collect(Collectors.toSet());
         var valueToIndexMap = new HashMap<Integer, Integer>();
         for(int i=0;i < inputArray.length;i++){
             valueToIndexMap.put(inputArray[i], i);
@@ -27,5 +31,17 @@ public class MatchingSumInArray {
             }
         }
         return false;
+    }
+
+    private static int[] find2NumbersImproved(int[] inputArray, int k) {
+        var valueToIndexMap = new HashMap<Integer, Integer>();
+        for(int i=0;i < inputArray.length;i++){
+            var diff = k - inputArray[i];
+            if(valueToIndexMap.containsKey(diff)) {
+                return new int[]{valueToIndexMap.get(diff), i};
+            }
+            valueToIndexMap.put(inputArray[i], i);
+        }
+        return null;
     }
 }
