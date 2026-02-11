@@ -12,7 +12,7 @@ public class MulitplyExceptSelf {
 
 //        int[] inputArray = {1,2,3,4,5};
         int[] inputArray = {3,2,1};
-        var productArray =  productArrayWithoutSelf(inputArray);
+        var productArray =  productArrayWithoutSelfSimpler(inputArray);
         IntStream.of(productArray).forEach(System.out::println);
     }
 
@@ -36,5 +36,20 @@ public class MulitplyExceptSelf {
             }
         }
         return productArr;
+    }
+    private static int[] productArrayWithoutSelfSimpler(int[] inputArray) {
+        int productBefore = 1;
+        int[] productArr = new int[inputArray.length];
+        int[] productArrayWithoutSelf = new int[inputArray.length];
+        for (int i=0;i<inputArray.length;i++) {
+            productArr[i] = productBefore;
+            productBefore *= inputArray[i];
+        }
+        int productAfter = 1;
+        for(int j=inputArray.length-1;j>=0;j--) {
+            productArrayWithoutSelf[j] = productAfter * productArr[j];
+            productAfter *= inputArray[j];
+        }
+        return productArrayWithoutSelf;
     }
 }
