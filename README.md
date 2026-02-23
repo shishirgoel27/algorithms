@@ -12,6 +12,7 @@ Algorithms/
 ├── arrays/           # Array-based algorithm problems
 ├── graph/            # Graph data structures and traversal algorithms
 ├── list/             # Linked list operations
+├── union-find/       # Find and add to disjoint sets
 └── tree/             # Binary tree utilities
 ```
 
@@ -21,13 +22,14 @@ Algorithms/
 
 Contains solutions for common array manipulation problems.
 
-| Class | Description |
-|-------|-------------|
-| `ContainsDuplicate` | Checks if an array contains any duplicate values. Provides two implementations: using HashMap and HashSet. |
-| `MatchingSumInArray` | Given a list of numbers and a target `k`, determines if any two numbers add up to `k` (Two Sum problem). |
-| `MissingNumber` | Finds the missing minimum positive number in an array containing positive, negative, and duplicate numbers in O(n) time and O(1) space. |
-| `MultiplyExceptSelf` | Returns a new array where each element is the product of all elements except itself, without using division. |
-| `CountOccurrenceInSortedArray` | Uses binary search to count occurrences of a given number in a sorted array. |
+| Class                          | Description                                                                                                                             |
+|--------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| `ContainsDuplicate`            | Checks if an array contains any duplicate values. Provides two implementations: using HashMap and HashSet.                              |
+| `MatchingSumInArray`           | Given a list of numbers and a target `k`, determines if any two numbers add up to `k` (Two Sum problem).                                |
+| `MissingNumber`                | Finds the missing minimum positive number in an array containing positive, negative, and duplicate numbers in O(n) time and O(1) space. |
+| `MultiplyExceptSelf`           | Returns a new array where each element is the product of all elements except itself, without using division.                            |
+| `CountOccurrenceInSortedArray` | Uses binary search to count occurrences of a given number in a sorted array.                                                            |
+| `MaxFruitsInBasket`            | Counts the maximum possible fruits of 2 types that can be added in a continuous order(SlidingWindow).                                   |
 
 ### 2. Graph Module
 
@@ -46,17 +48,19 @@ Implements graph data structures and common traversal algorithms.
 
 Contains linked list operations.
 
-| Class | Description |
-|-------|-------------|
-| `ReverseList` | Reverses a singly linked list with both recursive and iterative approaches. Includes utility methods to build and print a linked list. |
+| Class         | Description                                                                                                                                   |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| `ReverseList` | Reverses a singly linked list with both recursive and iterative approaches. Includes utility methods to build and print a linked list.        |
+| `LRUCache`    | Implements the LRU cache using map and doubly linked list to remove the least recently used item from the cache when it reaches the capacity. |
 
 ### 4. Tree Module
 
 Binary tree utilities and operations.
 
-| Class | Description |
-|-------|-------------|
-| `BinaryTreeUtility` | Provides binary tree operations including calculating tree height/depth and checking if two trees are symmetric. |
+| Class                | Description                                                                                                      |
+|----------------------|------------------------------------------------------------------------------------------------------------------|
+| `BinaryTreeUtility`  | Provides binary tree operations including calculating tree height/depth and checking if two trees are symmetric. |
+| `BinarySearchTree`   | Provides binary search tree insert and inorder traversal                                                         |   
 
 ## Requirements
 
